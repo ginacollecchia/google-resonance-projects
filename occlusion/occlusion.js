@@ -10,34 +10,11 @@ let dimensions = {
 let materials = {
     left: 'brick-bare', right: 'brick-bare', front: 'brick-bare', back: 'brick-bare', up: 'brick-bare', down: 'wood-panel',
 };
-/* let materials = {
-  brick: {
-    left: 'brick-bare', right: 'brick-bare',
-    up: 'brick-bare', down: 'wood-panel',
-    front: 'brick-bare', back: 'brick-bare',
-  },
-  curtains: {
-    left: 'curtain-heavy', right: 'curtain-heavy',
-    up: 'wood-panel', down: 'wood-panel',
-    front: 'curtain-heavy', back: 'curtain-heavy',
-  },
-  marble: {
-    left: 'marble', right: 'marble',
-    up: 'marble', down: 'marble',
-    front: 'marble', back: 'marble',
-  },
-  outside: {
-    left: 'transparent', right: 'transparent',
-    up: 'transparent', down: 'grass',
-    front: 'transparent', back: 'transparent',
-  },
-}; */
 let audioSources = [
 	'https://cdn.rawgit.com/resonance-audio/resonance-audio-web-sdk/master/examples/resources/cube-sound.wav',
 	'https://cdn.rawgit.com/resonance-audio/resonance-audio-web-sdk/master/examples/resources/speech-sample.wav',
 	'https://cdn.rawgit.com/resonance-audio/resonance-audio-web-sdk/master/examples/resources/music.wav',
 ];
-let volumes = [];
 let audioReady = false;
 
 /** 
@@ -71,6 +48,8 @@ function adjustSourceVolume() {
 	if (!audioReady)
 		return;
 	
+    let volumes = [];
+    
     volumes[0] = parseFloat(document.getElementById('volumeAdjustCubeSound').value);
 	volumes[1] = parseFloat(document.getElementById('volumeAdjustSpeech').value);
 	volumes[2] = parseFloat(document.getElementById('volumeAdjustMusic').value);
