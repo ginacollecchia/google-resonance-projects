@@ -56,21 +56,21 @@
                 </div>-->
                 
                 <div class="form-row">
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-md-4">
                         <label for="roomDimensionsEnterWidth" class="col-form-label">Room Dimensions: Width</label>
                         <input type="number" class="form-control" id="roomDimensionsEnterWidth" placeholder="8.0">
                     </div>
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-md-4">
                         <label for="roomDimensionsEnterHeight" class="col-form-label">Room Dimensions: Height</label>
                         <input type="number" class="form-control" id="roomDimensionsEnterHeight" placeholder="3.4">
                     </div>
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-md-4">
                         <label for="roomDimensionsEnterDepth" class="col-form-label">Room Dimensions: Depth</label>
                         <input type="number" class="form-control" id="roomDimensionsEnterDepth" placeholder="9.0">
                     </div>
                 </div>
                 <div class="form-row">
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-md-4">
                         <label for="roomMaterialsSelectLeft" class="col-form-label">Wall Materials: Left</label>
                         <select id="roomMaterialsSelectLeft" class="form-control">
                             <option value="brick-bare" selected>Brick</option>
@@ -79,7 +79,7 @@
                             <option value="transparent">Air</option>
                         </select>
                     </div>
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-md-4">
                         <label for="roomMaterialsSelectRight" class="col-form-label">Wall Materials: Right</label>
                         <select id="roomMaterialsSelectRight" class="form-control">
                             <option value="brick-bare" selected>Brick</option>
@@ -88,7 +88,7 @@
                             <option value="transparent">Air</option>
                         </select>
                     </div>
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-md-4">
                         <label for="roomMaterialsSelectFront" class="col-form-label">Wall Materials: Front</label>
                         <select id="roomMaterialsSelectFront" class="form-control">
                             <option value="brick-bare" selected>Brick</option>
@@ -97,7 +97,7 @@
                             <option value="transparent">Air</option>
                         </select>
                     </div>
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-md-4">
                         <label for="roomMaterialsSelectBack" class="col-form-label">Wall Materials: Back</label>
                         <select id="roomMaterialsSelectBack" class="form-control">
                             <option value="brick-bare" selected>Brick</option>
@@ -106,7 +106,7 @@
                             <option value="transparent">Air</option>
                         </select>
                     </div>
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-md-4">
                         <label for="roomMaterialsSelectTop" class="col-form-label">Wall Materials: Top</label>
                         <select id="roomMaterialsSelectTop" class="form-control">
                             <option value="brick-bare">Brick</option>
@@ -115,7 +115,7 @@
                             <option value="transparent">Air</option>
                         </select>
                     </div>
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-md-4">
                         <label for="roomMaterialsSelectBottom" class="col-form-label">Wall Materials: Bottom</label>
                         <select id="roomMaterialsSelectBottom" class="form-control">
                             <option value="brick-bare">Brick</option>
@@ -125,21 +125,23 @@
                         </select>
                     </div>
                 </div> 
+                
+            </div>
+            <div class="col-lg-5 text-center">
                 <div class="form-row">
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-md-4">
                         <label for="volumeAdjustCubeSound" class="col-form-label">Adjust Volume: Cube Sound</label>
                         <input type="range" min="0" max="100" value="100" class="form-control" id="volumeAdjustCubeSound">
                     </div>
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-md-4">
                         <label for="volumeAdjustSpeech" class="col-form-label">Adjust Volume: Speech</label>
                         <input type="range" min="0" max="100" value="100" class="form-control" id="volumeAdjustSpeech">
                     </div>
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-md-4">
                         <label for="volumeAdjustMusic" class="col-form-label">Adjust Volume: Music</label>
                         <input type="range" min="0" max="100" value="100" class="form-control" id="volumeAdjustMusic">
                     </div>
                 </div>
-                
                 <div class="row">
                     <div class="col-md-3 mb-2">
                         <div class="input-group">
@@ -172,8 +174,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-lg-5 text-center">
                 <div style="width:100%">
                     <canvas id="canvas"></canvas>
                 </div>

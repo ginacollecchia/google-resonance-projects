@@ -5,20 +5,12 @@ let soundSources = [];
 let scene;
 let sourceIds = ['sourceAButton', 'sourceBButton', 'sourceCButton'];
 let dimensions = {
-	small: {
-		width: 1.5, height: 2.4, depth: 1.3,
-	},
-	medium: {
-		width: 4, height: 3.2, depth: 3.9,
-	},
-	large: {
-		width: 8, height: 3.4, depth: 9,
-	},
-	huge: {
-		width: 20, height: 10, depth: 20,
-	},
+	width: 8, height: 3.4, depth: 9,
 };
 let materials = {
+    left: 'brick-bare', right: 'brick-bare', front: 'brick-bare', back: 'brick-bare', up: 'brick-bare', down: 'wood-panel',
+};
+/* let materials = {
   brick: {
     left: 'brick-bare', right: 'brick-bare',
     up: 'brick-bare', down: 'wood-panel',
@@ -39,26 +31,13 @@ let materials = {
     up: 'transparent', down: 'grass',
     front: 'transparent', back: 'transparent',
   },
-};
+}; */
 let audioSources = [
 	'https://cdn.rawgit.com/resonance-audio/resonance-audio-web-sdk/master/examples/resources/cube-sound.wav',
 	'https://cdn.rawgit.com/resonance-audio/resonance-audio-web-sdk/master/examples/resources/speech-sample.wav',
 	'https://cdn.rawgit.com/resonance-audio/resonance-audio-web-sdk/master/examples/resources/music.wav',
 ];
-let dimensionSelection = 'small';
-let materialSelection = 'brick';
-let dimensionSelectionWidth = 8;
-let dimensionSelectionHeight = 3.4;
-let dimensionSelectionDepth = 9;
-let materialSelectionLeft = 'brick-bare';
-let materialSelectionRight = 'brick-bare';
-let materialSelectionFront = 'brick-bare';
-let materialSelectionBack = 'brick-bare';
-let materialSelectionTop = 'brick-bare';
-let materialSelectionBottom = 'wood-panel';
-let volumeCubeSound = 100;
-let volumeSpeech = 100;
-let volumeMusic = 100;
+let volumes = [];
 let audioReady = false;
 
 /** 
@@ -71,26 +50,15 @@ function selectRoomProperties() {
 	
 	// dimensionSelection = document.getElementById('roomDimensionsSelect').value;
 	// materialSelection = document.getElementById('roomMaterialsSelect').value;
-	dimensionSelectionWidth = document.getElementById('roomDimensionsEnterWidth').value;
-	dimensionSelectionHeight = document.getElementById('roomDimensionsEnterHeight').value;
-	dimensionSelectionDepth = document.getElementById('roomDimensionsEnterDepth').value;
-	materialSelectionLeft = document.getElementById('roomMaterialsSelectLeft').value;
-	materialSelectionRight = document.getElementById('roomMaterialsSelectRight').value;
-	materialSelectionFront = document.getElementById('roomMaterialsSelectFront').value;
-	materialSelectionBack = document.getElementById('roomMaterialsSelectBack').value;
-	materialSelectionTop = document.getElementById('roomMaterialsSelectTop').value;
-	materialSelectionBottom = document.getElementById('roomMaterialsSelectBottom').value;
-	dimensions = {width: dimensionSelectionWidth, height: dimensionSelectionHeight, depth: dimensionSelectionDepth,};
-	materials = {left: materialSelectionLeft, right: materialSelectionRight, up: materialSelectionTop, down: materialSelectionBottom, front: materialSelectionFront, back: materialSelectionBack,}; 
-	/* document.getElementById('roomLeftText').innerHTML = materialSelectionLeft;
-	document.getElementById('roomRightText').innerHTML = materialSelectionRight;
-	document.getElementById('roomFrontText').innerHTML = materialSelectionFront;
-	document.getElementById('roomBackText').innerHTML = materialSelectionBack;
-	document.getElementById('roomTopText').innerHTML = materialSelectionTop;
-	document.getElementById('roomBottomText').innerHTML = materialSelectionBottom;
-	document.getElementById('roomWidthText').innerHTML = dimensionSelectionWidth.toString() + " meters";
-	document.getElementById('roomDepthText').innerHTML = dimensionSelectionDepth.toString() + " meters";
-	document.getElementById('roomHeightText').innerHTML = dimensionSelectionHeight.toString() + " meters"; */
+	dimensions.width = document.getElementById('roomDimensionsEnterWidth').value;
+	dimensions.height = document.getElementById('roomDimensionsEnterHeight').value;
+	dimensions.depth = document.getElementById('roomDimensionsEnterDepth').value;
+	materials.left = document.getElementById('roomMaterialsSelectLeft').value;
+	materials.right = document.getElementById('roomMaterialsSelectRight').value;
+	materials.front = document.getElementById('roomMaterialsSelectFront').value;
+	materials.back = document.getElementById('roomMaterialsSelectBack').value;
+	materials.up = document.getElementById('roomMaterialsSelectTop').value;
+	materials.down = document.getElementById('roomMaterialsSelectBottom').value;
 	scene.setRoomProperties(dimensions, materials);
 	canvasControl.invokeCallback();
 }
@@ -103,13 +71,13 @@ function adjustSourceVolume() {
 	if (!audioReady)
 		return;
 	
-	volumeCubeSound = parseFloat(document.getElementById('volumeAdjustCubeSound').value);
-	volumeSpeech = parseFloat(document.getElementById('volumeAdjustSpeech').value);
-	volumeMusic = parseFloat(document.getElementById('volumeAdjustMusic').value);
+    volumes[0] = parseFloat(document.getElementById('volumeAdjustCubeSound').value);
+	volumes[1] = parseFloat(document.getElementById('volumeAdjustSpeech').value);
+	volumes[2] = parseFloat(document.getElementById('volumeAdjustMusic').value);
 	
-	audioSources[0].setGain(volumeCubeSound/100.0);
-	audioSources[1].setGain(volumeSpeech/100.0);
-	audioSources[2].setGain(volumeMusic/100.0);
+    for (let i = 0; i < soundSources.length; i++) {
+        audioElements[i].volume = volumes[i]/100.0;
+    }
 }
 
 /** 
@@ -122,13 +90,13 @@ function updatePositions(elements) {
 		return;
 	
 	for (let i = 0; i < elements.length; i++) {
-		let x = (elements[i].x - 0.5) * dimensions.width / 2;
+		let x = (elements[i].x - 0.5) * dimensions.width / 2.0;
 		let y = 0;
-		let z = (elements[i].y - 0.5) * dimensions.depth / 2;
+		let z = (elements[i].y - 0.5) * dimensions.depth / 2.0;
 		if (i < elements.length - 1) {
-			soundSources[i].setPosition(x,y,z);
+			soundSources[i].setPosition(x, y, z);
 		} else {
-			scene.setListenerPosition(x,y,z);
+			scene.setListenerPosition(x, y, z);
 		}
 	}
 }
