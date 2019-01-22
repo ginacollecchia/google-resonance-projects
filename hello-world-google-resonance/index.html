@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+	
+	<link rel="stylesheet" href="https://cdn.rawgit.com/resonance-audio/resonance-audio-web-sdk/master/examples/resources/examples.css">
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+	
+	<title>My Example Google Resonance Scene</title>
+</head>
+
+<body>
+	<div class="container mt-5">
+	      <div class="row justify-content-center">
+	        <div class="col-lg-5 mb-4">
+				<h1>Hello World</h1>
+				<p>
+					Statically position a source
+					<img src="https://cdn.rawgit.com/resonance-audio/resonance-audio-web-sdk/master/examples/resources/volume-high.svg" class="icon" alt="source" id="sourceIcon">
+					front-left to the listener
+					<img src="https://cdn.rawgit.com/resonance-audio/resonance-audio-web-sdk/master/examples/resources/person.svg" class="icon" alt="listener" id="listenerIcon">
+					inside a medium-size room.
+				</p>
+				
+				<div class="input-group">
+					<span class="input-group-addon">
+						<img src="https://cdn.rawgit.com/resonance-audio/resonance-audio-web-sdk/master/examples/resources/volume-high.svg" class="icon-button">
+					</span>
+					<span class="input-group-addon">
+						<img src="https://cdn.rawgit.com/resonance-audio/resonance-audio-web-sdk/master/examples/resources/media-record.svg" class="icon-button">
+					</span>
+					<span class="input-group-btn">
+						<button type="button" class="btn btn-primary" id="sourceButton">Play</button>
+					</span>
+				</div>
+			</div>
+			
+			<div class="col-lg-5 text-center">
+				<div style="width:100%">
+					<canvas id="canvas"></canvas>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<script src="https://cdn.jsdelivr.net/npm/resonance-audio/build/resonance-audio.min.js"></script>
+	<script src="../scripts/my_example_scene.js"></script>
+	<script src="../scripts/canvas-control.js"></script>
+
+</body>
+</html>

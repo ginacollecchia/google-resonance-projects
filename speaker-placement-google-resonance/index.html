@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+	
+	<link rel="stylesheet" href="https://cdn.rawgit.com/resonance-audio/resonance-audio-web-sdk/master/examples/resources/examples.css">
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+	
+	<title>Speaker Placement in a Google Resonance Scene</title>
+</head>
+
+<body>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-5 mb-2">
+                <h1>Room Models</h1>
+                <p class="lead">
+                    <img src="https://cdn.rawgit.com/resonance-audio/resonance-audio-web-sdk/master/examples/resources/headphones.svg" class="icon-lg" alt="headphones">
+                    Best experienced over headphones.
+                </p>
+                <p>
+                    Click (or touch) and drag the sources
+                    <img src="https://cdn.rawgit.com/resonance-audio/resonance-audio-web-sdk/master/examples/resources/volume-high.svg" class="icon" alt="source" id="sourceAIcon">,
+                    <img src="https://cdn.rawgit.com/resonance-audio/resonance-audio-web-sdk/master/examples/resources/microphone.svg" class="icon" alt="source" id="sourceBIcon">,
+                    <img src="https://cdn.rawgit.com/resonance-audio/resonance-audio-web-sdk/master/examples/resources/musical-note.svg" class="icon" alt="source" id="sourceCIcon">
+                    and the listener
+                    <img src="https://cdn.rawgit.com/resonance-audio/resonance-audio-web-sdk/master/examples/resources/person.svg" class="icon" alt="source" id="listenerIcon">,
+                    to move them front-back/left-right around the room.
+                    Select various options of room sizes and wall materials.
+                </p>
+                
+                <!--<div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="roomDimensionsSelect" class="col-form-label">Room Dimensions</label>
+                        <select id="roomDimensionsSelect" class="form-control">
+                            <option value="small" selected>Small</option>
+                            <option value="medium">Medium</option>
+                            <option value="large">Large</option>
+                            <option value="huge">Huge</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="roomMaterialsSelect" class="col-form-label">Wall Materials</label>
+                        <select id="roomMaterialsSelect" class="form-control">
+                            <option value="brick" selected>Brick</option>
+                            <option value="curtains">Curtains</option>
+                            <option value="marble">Marble</option>
+                            <option value="outside">Outdoors</option>
+                        </select>
+                    </div>
+                </div>-->
+                
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="roomDimensionsEnterWidth" class="col-form-label">Room Dimensions: Width</label>
+                        <input type="number" class="form-control" id="roomDimensionsEnterWidth" placeholder="8.0">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="roomDimensionsEnterHeight" class="col-form-label">Room Dimensions: Height</label>
+                        <input type="number" class="form-control" id="roomDimensionsEnterHeight" placeholder="3.4">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="roomDimensionsEnterDepth" class="col-form-label">Room Dimensions: Depth</label>
+                        <input type="number" class="form-control" id="roomDimensionsEnterDepth" placeholder="9.0">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="roomMaterialsSelectLeft" class="col-form-label">Wall Materials: Left</label>
+                        <select id="roomMaterialsSelectLeft" class="form-control">
+                            <option value="brick-bare" selected>Brick</option>
+                            <option value="curtain-heavy">Curtains</option>
+                            <option value="marble">Marble</option>
+                            <option value="transparent">Air</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="roomMaterialsSelectRight" class="col-form-label">Wall Materials: Right</label>
+                        <select id="roomMaterialsSelectRight" class="form-control">
+                            <option value="brick-bare" selected>Brick</option>
+                            <option value="curtain-heavy">Curtains</option>
+                            <option value="marble">Marble</option>
+                            <option value="transparent">Air</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="roomMaterialsSelectFront" class="col-form-label">Wall Materials: Front</label>
+                        <select id="roomMaterialsSelectFront" class="form-control">
+                            <option value="brick-bare" selected>Brick</option>
+                            <option value="curtain-heavy">Curtains</option>
+                            <option value="marble">Marble</option>
+                            <option value="transparent">Air</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="roomMaterialsSelectBack" class="col-form-label">Wall Materials: Back</label>
+                        <select id="roomMaterialsSelectBack" class="form-control">
+                            <option value="brick-bare" selected>Brick</option>
+                            <option value="curtain-heavy">Curtains</option>
+                            <option value="marble">Marble</option>
+                            <option value="transparent">Air</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="roomMaterialsSelectTop" class="col-form-label">Wall Materials: Top</label>
+                        <select id="roomMaterialsSelectTop" class="form-control">
+                            <option value="brick-bare">Brick</option>
+                            <option value="wood-panel" selected>Wood</option>
+                            <option value="marble">Marble</option>
+                            <option value="transparent">Air</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="roomMaterialsSelectBottom" class="col-form-label">Wall Materials: Bottom</label>
+                        <select id="roomMaterialsSelectBottom" class="form-control">
+                            <option value="brick-bare">Brick</option>
+                            <option value="wood-panel" selected>Wood</option>
+                            <option value="marble">Marble</option>
+                            <option value="grass">Grass</option>
+                        </select>
+                    </div>
+                </div> 
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="volumeAdjustCubeSound" class="col-form-label">Adjust Volume: Cube Sound</label>
+                        <input type="range" min="0" max="100" value="100" class="form-control" id="volumeAdjustCubeSound">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="volumeAdjustSpeech" class="col-form-label">Adjust Volume: Speech</label>
+                        <input type="range" min="0" max="100" value="100" class="form-control" id="volumeAdjustSpeech">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="volumeAdjustMusic" class="col-form-label">Adjust Volume: Music</label>
+                        <input type="range" min="0" max="100" value="100" class="form-control" id="volumeAdjustMusic">
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-md-3 mb-2">
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <img src="https://cdn.rawgit.com/resonance-audio/resonance-audio-web-sdk/master/examples/resources/volume-high.svg" class="icon-button">
+                            </span>
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-primary" id="sourceAButton">Play</button>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-2">
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <img src="https://cdn.rawgit.com/resonance-audio/resonance-audio-web-sdk/master/examples/resources/microphone.svg" class="icon-button">
+                            </span>
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-primary" id="sourceBButton">Play</button>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-2">
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <img src="https://cdn.rawgit.com/resonance-audio/resonance-audio-web-sdk/master/examples/resources/musical-note.svg" class="icon-button">
+                            </span>
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-primary" id="sourceCButton">Play</button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-5 text-center">
+                <div style="width:100%">
+                    <canvas id="canvas"></canvas>
+                </div>
+                <!--<div>Width: <div id="roomWidthText">8 meters</div></div>
+                <div>Height: <div id="roomHeightText">3.4 meters</div></div>
+                <div>Depth: <div id="roomDepthText">9 meters</div></div>
+                <div>Left: <div id="roomLeftText">Brick</div></div>
+                <div>Right: <div id="roomRightText">Brick</div></div>
+                <div>Front: <div id="roomFrontText">Brick</div></div>
+                <div>Back: <div id="roomBackText">Brick</div></div>
+                <div>Top: <div id="roomTopText">Wood</div></div>
+                <div>Bottom: <div id="roomBottomText">Wood</div></div>-->
+            </div>
+        </div>
+    </div>
+	
+	
+	<script src="https://cdn.jsdelivr.net/npm/resonance-audio/build/resonance-audio.min.js"></script>
+	<script src="../scripts/speaker-placement.js"></script>
+	<script src="../scripts/canvas-control.js"></script>
+
+</body>
+</html>
