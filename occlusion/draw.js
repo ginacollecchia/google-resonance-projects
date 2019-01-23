@@ -1,4 +1,4 @@
-var canvas, ctx;
+var myCanvas, ctx;
 var pencils, currentPencil;
 
 var tools = {};
@@ -57,43 +57,43 @@ tools.eraser = function (sz) {
 
 var initDraw = function() {
   
-  canvas = $("#imageView");
+    myCanvas = $('#canvas');
   
-  ctx = canvas[0].getContext("2d");
+    ctx = myCanvas[0].getContext('2d');
 	ctx.lineCap = 'round';  
 	
-  currentPencil = new tools.pencil("#000", 8);
+    currentPencil = new tools.pencil("#000", 8);
   
-  canvas.mousedown(function(evt){
-    evt._x = evt.offsetX;
-    evt._y = evt.offsetY;
-    currentPencil.mousedown(evt);
-    /* play drawing sound */
-  });
+    myCanvas.mousedown(function(evt){
+        evt._x = evt.offsetX;
+        evt._y = evt.offsetY;
+        currentPencil.mousedown(evt);
+        /* play drawing sound */
+    });
   
-  canvas.mouseup(function(evt){
-    evt._x = evt.offsetX;
-    evt._y = evt.offsetY;
-    currentPencil.mouseup(evt);
-    /* pause drawing sound */
-  });
+    myCanvas.mouseup(function(evt){
+        evt._x = evt.offsetX;
+        evt._y = evt.offsetY;
+        currentPencil.mouseup(evt);
+        /* pause drawing sound */
+    });
   
-  canvas.mousemove(function(evt){
-    evt._x = evt.offsetX;
-    evt._y = evt.offsetY;
-    currentPencil.mousemove(evt);
-    /* play higher pitched drawing sound */
-  });
+    myCanvas.mousemove(function(evt){
+        evt._x = evt.offsetX;
+        evt._y = evt.offsetY;
+        currentPencil.mousemove(evt);
+        /* play higher pitched drawing sound */
+    });
   
 };
 
 var setTool = function(t) {
-  currentPencil = t;
+    currentPencil = t;
 }
 
 var clearAll = function() {
-  $("#wall").css("opacity", 0.5);
+  $("#wall").css("opacity", 1.0);
   
-  canvas[0].width = canvas[0].width;
+  myCanvas[0].width = myCanvas[0].width;
 };
 
